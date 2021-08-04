@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -17,6 +17,7 @@ function Categories () {
       payload: category,
     });
   }
+  console.log('in categories', categories);
 
   return (
     <List>
@@ -24,7 +25,7 @@ function Categories () {
       {categories.map(category => {
         return (
           <ListItem onClick={() => setCategory(category.normalizedName)}>
-            <ListItemText primary={category.displayName} />
+            <ListItemText primary={category.displayName}/>
           </ListItem>
         )
       })}
