@@ -13,11 +13,33 @@ const initialState = {
   activeCategory: '',
 }
 
+export function categoriesReducer(state = initialState, action) {
+  switch(action.type) {
+    case 'ACTIVATE_CATEGORY':
+      return {...state, activeCategory: action.payload};
+      default:
+        return state;
+  }
+}
+
+export function activateCategory(categoryName) {
+  return {
+    type: 'ACTIVATE_CATEGORY',
+    payload: categoryName,
+  }
+}
+
 // Reducer receives actions and updates state:
 export default function productsReducer(state = initialState, action) {
   switch(action.type) {
-    case 'ACTIVATE':
-      return { ...state, activeCategory: action.payload }
+    case 'ADD_TO_CART':
+      return state.map(product => {
+        if (product.name === action.payload.name) {
+          product.inventoryCount = product.inventoryCount - 1;
+        }
+        return product;
+      });
+      case 'REMOVE_FROM_CART':
     default:
       return state;
   }
