@@ -15,8 +15,8 @@ function App() {
       <div className="App">
         <h1>React is Alive</h1>
         <Header>
-          <SimpleCart />
         </Header>
+        <SimpleCart />
         <Categories />
         <ActiveCategory />
         <ProductList />
