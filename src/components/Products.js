@@ -1,9 +1,23 @@
-import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
-function Products () {
+import { addToCart } from '../store/cart.js';
+
+function ProductList() {
+  const products = useSelector(state => state.store.products);
+  const dispatch = useDispatch();
+
+  const itemClick = (name) => {
+    dispatch(addToCart(name));
+  }
+
+  console.log('in products', products);
   return (
-    <p>This is the Products component that will display products associated with the selected category</p>
+    <ul>
+      {products.map(item => {
+        return <li onClick={() => itemClick(item)}>{item.name}</li>
+      })}
+    </ul>
   )
 }
 
-export default Products;
+export default ProductList;
